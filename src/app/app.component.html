@@ -1,0 +1,49 @@
+    <nav class="navbar navbar-expand-lg" style="background-color: #ec420e;">
+        <div class="container-fluid">
+            <a style="color: #ffffff" href="#" class="navbar-brand" href="#">
+                <img src="/assets/img/Italy-flag.jpg" alt="" width="70" class="d-inline-block align-text-top">
+                Olasz Pizzéria
+            </a>
+                <button class="navbar-toggler" type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" *ngIf="isAuthenticated">
+                        <a style="color: #ffffff" href="#" class="nav-link active" routerLink="/">Étlap</a>
+                    </li>
+                    <li class="nav-item" *ngIf="isAuthenticated">
+                        <a style="color: #ffffff" href="#" class="nav-link active" routerLink="/cart">Kosár</a>
+                    </li>
+                    <li class="nav-item" *ngIf="isAuthenticated">
+                        <a style="color: #ffffff" href="#" class="nav-link active" routerLink="/user">Felhasználók</a>
+                    </li>
+                    <li class="nav-item" *ngIf="isAuthenticated">
+                        <a style="color: #ffffff" href="#" class="nav-link active" routerLink="/user-create">Felhasználó hozzáadása</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" *ngIf="!isAuthenticated">
+                        <a style="color: #ffffff" href="#" class="nav-link active" routerLink="/login">Bejelentkezés</a>
+                    </li>                        
+                    <li class="nav-item" *ngIf="!isAuthenticated">
+                        <a style="color: #ffffff" href="#" class="nav-link active" routerLink="/register">Regisztráció</a>
+                    </li>
+                    <li class="nav-item" *ngIf="isAuthenticated">
+                        <a style="color: #8f8f8f" href class="nav-link active" (click)="logout()">Kijelentkezés</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>

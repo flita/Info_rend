@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col col-md-12" *ngIf="isAdmin">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h1 class="page-title">Felhasználó hozzáadása</h1>
+
+            <div class="alert alert-danger" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+            
+            <div class="form-group">
+
+                <label for="name">Név</label>
+                <input type="text"
+                formControlName="name"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Név mégadása kötelező</div>
+                    <div *ngIf="f.name.errors.minlength">A névnek legalább 4 karakter hosszúnak kell lennie</div>
+                    <div *ngIf="f.name.errors.pattern">A név csak sima karatkerekből állhat</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label for="number">Telefonszám</label>
+                <input type="number"
+                formControlName="number"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.number.errors }">
+
+                <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+                    <div *ngIf="f.number.errors.required">Telefonszám megadása kötelező</div>
+                    <div *ngIf="f.number.errors.minlength">A telefonszámnak legalább 8 karakter hosszúnak kell lennie</div>
+                    <div *ngIf="f.number.errors.maxlength">A telefonszám maximum 10 karaterből állhat</div>
+                    <div *ngIf="f.number.errors.pattern">A telefonszám csak számokból állhat</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email"
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email megadása kötelező</div>
+                    <div *ngIf="f.email.errors.email">Valótlan email</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Jelszó</label>
+                <input type="password"
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Jelszó megadása kötelező</div>
+                    <div *ngIf="f.password.errors.minlength">A jelszónak legalább 6 karakter hosszúnak kell lennie</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Jogosultság</label>
+                <select name="role" id="role" formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="USER">USER</option>
+                </select>
+
+                <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                    <div *ngIf="f.role.errors.required">Role is required</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-warning mt-5">Add</button>
+        </form>
+    </div>
+
+    <div class="col-md-12" *ngIf="!isAdmin">
+        <div class="alert alert-danger mt-3">Nincs hozzáférése</div>
+    </div>
+</div>

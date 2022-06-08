@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "foodName": "Margaréta",
+        "imgUrl": "../../assets/img/pizza/1.-600x280.jpg",
+        "category": "Pizza",
+        "description": "paradicsomszósz, mozzarella, friss bazsalikom",
+        "price": 1990,
+        "preparation": 40
+    },
+    {
+        "id": 2,
+        "foodName": "Prosciutto",
+        "imgUrl": "../../assets/img/pizza/2.-600x280.jpg",
+        "category": "Pizza",
+        "description": "paradicsomszósz, mozzarella, sonka",
+        "price": 2090,
+        "preparation": 40
+    },
+    {
+        "id": 3,
+        "foodName": "Prosciutto e funghi",
+        "imgUrl": "../../assets/img/pizza/03.-Prosciutto-e-funghi-600x280.jpg",
+        "category": "Pizza",
+        "description": "paradicsomszósz, mozzarella, sonka, gomba",
+        "price": 2190,
+        "preparation": 40
+    },
+    {
+        "id": 4,
+        "foodName": "Salame piccante",
+        "imgUrl": "../../assets/img/pizza/4-600x280.jpg",
+        "category": "Pizza",
+        "description": "paradicsomszósz, mozzarella, szalámi piccante",
+        "price": 2190,
+        "preparation": 40
+    },
+    {
+        "id": 5,
+        "foodName": "Tonno",
+        "imgUrl": "../../assets/img/pizza/5-600x280.jpg",
+        "category": "Pizza",
+        "description": "paradicsomszósz, mozzarella, tonhal, fekete olívabogyó",
+        "price": 2290,
+        "preparation": 40
+    },
+    {
+        "id": 6,
+        "foodName": "Panna cotta erdei gyümölcsös",
+        "imgUrl": "../../assets/img/desszert/panna-cotta-erdei-gyümölcsös.jpg",
+        "category": "Desszert",
+        "description": "",
+        "price": 1290,
+        "preparation": 20
+    },
+    {
+        "id": 7,
+        "foodName": "Profiterol",
+        "imgUrl": "../../assets/img/desszert/chocolate-profiteroles8.jpg",
+        "category": "Desszert",
+        "description": "",
+        "price": 1290,
+        "preparation": 20
+    },
+    {
+        "id": 8,
+        "foodName": "Menabrea Bionda világos sör",
+        "imgUrl": "../../assets/img/sor/menabrea-felicita-560x280.jpg",
+        "category": "Sör",
+        "description": "0,33L, Alkoholtartalom: 4,8 %, Származási hely: Olaszország",
+        "price": 750,
+        "preparation": 0
+    }
+]

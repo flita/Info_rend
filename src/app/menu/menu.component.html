@@ -1,0 +1,45 @@
+<div class="container-fluid bg-trasparent p-3" style="position: relative;">
+
+    <div class="alert alert-success mt-3" *ngIf="response">
+        {{ response }}
+    </div>
+
+    <div class="row row-cols-1">
+        <div class="col mt-4" *ngFor="let order of orderables">
+            <div class="card h-100 shadow-sm" >
+                <form [formGroup]="form">
+
+                    <img [src]="order.imgUrl" class="card-img-top">
+
+                    <div class="label-top shadow-sm bg-dark">
+                        {{ order.category }}
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="clearfix mb-3"> 
+                            <span class="float-start badge bg-dark text-light">
+                                {{ order.foodName }}
+                            </span><br>
+                            
+                            <span class="float-end price-hp">
+                                {{ order.price }} Ft
+                            </span><br>
+                            
+                            <span class="float-end price-hp">
+                                {{ order.preparation}} perc
+                            </span> 
+                        </div>
+                        
+                        <h5 class="card-title">
+                            {{ order.description }}
+                        </h5>
+                        
+                        <div class="text-center my-4"> 
+                            <button class="btn btn-warning" (click)="onSubmit(order)">Kosárba tesz</button><br>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
