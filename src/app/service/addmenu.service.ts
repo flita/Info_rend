@@ -1,38 +1,37 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { AddMenuComponent } from '../addmenu/addmenu.component';
-import { Menu } from '../model/menu';
-import { User } from '../model/user';
 import { AddMenu } from '../model/addmenu';
+import { lastValueFrom } from 'rxjs';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
+export class AddMenuService {
   id!: Pick<AddMenu, 'id'>;
+
+  constructor(private http: HttpClient) { }
 
   httpOptions: { headers: HttpHeaders} = {
     headers: new HttpHeaders({"Content-Type": "application/json"}),
   }
 
-  constructor(private http: HttpClient) { }
+  async addMenu(menu: AddMenu) {
+    return lastValueFrom(this.http.post<AddMenu>('/api/createMenu', menu));
+  }
 
-  createOrder(formData: Partial<Menu>, userId: Pick<User, 'id'>, menuId: Pick<AddMenu, 'id'>): Observable<Menu> {
-    return this.http.post<Menu>('/api/createOrder',
-        { menuId: menuId,
-          foodName: formData.foodName, 
-          imgUrl: formData.imgUrl, 
-          category: formData.category,
-          description: formData.description, 
-          price: formData.price, 
-          preparation: formData.preparation,
-          uploaderId: userId },
-        this.httpOptions
-      )
-      .pipe(
-        catchError(this.ErrorHandler)
-      );
+  getMenu(): Observable<AddMenu[]> {
+    return this.http.get<AddMenu[]>('/api/menu', {responseType: 'json'}).pipe(
+      catchError(this.ErrorHandler)
+    );
+  }
+
+  deleteMenu(id: Pick<AddMenu, 'id'>): Observable<AddMenu> {
+    return this.http.delete<AddMenu>('/api/menu/'+id, this.httpOptions)
+    .pipe(
+      catchError(this.ErrorHandler)
+    );
   }
 
   private ErrorHandler(error: HttpErrorResponse) {
@@ -48,4 +47,5 @@ export class MenuService {
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
+
 }

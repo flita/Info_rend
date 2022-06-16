@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card h-80 w-80 shadow-sm mt-2" *ngFor="let cart of orders$ | async">   
+            <div class="card-body text-center">
+                <strong>ID:</strong><i class="mr-5"> {{ cart.id }}</i>
+                <strong>Ár:</strong><i class="mr-5"> {{ cart.price }}</i>
+                <strong>Szállítási idő:</strong><i class="mr-5"> {{cart.preparation }}</i>
+                <strong>Felhasználó ID:</strong><i class="mr-5"> {{ cart.uploaderId }}</i>
+                <strong>Étel ID:</strong><i class="mr-5"> {{ cart.menuId }}</i>
+                <button class="btn btn-warning" (click)="delete(cart.id)">X</button>
+            </div>
+        </div>
+    </div>
+</div>

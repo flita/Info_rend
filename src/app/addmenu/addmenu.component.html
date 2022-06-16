@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col col-md-12" *ngIf="isAdmin">
+        <form [formGroup]="menuForm">
+            <h1 class="page-title">Új étel hozzáadása</h1>
+
+            <div class="alert alert-danger" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Étel neve</label>
+                <input type="text" class="form-control" id="floatingInput" formControlName="foodName" >
+            </div>
+
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Fénykép elérési útvonal megadása</label>
+                <input type="text" class="form-control" id="floatingInput" formControlName="imgUrl" >
+            </div>
+
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Kategória</label>
+                <input type="text" class="form-control" id="floatingInput" formControlName="category" >
+            </div>
+
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Leírás</label>
+                <input type="text" class="form-control" id="floatingInput" formControlName="description" >
+            </div>
+
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Ár</label>
+                <input type="text" class="form-control" id="floatingInput" formControlName="price" >
+            </div>
+
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Elkészítési idő</label>
+                <input type="text" class="form-control" id="floatingInput" formControlName="preparation" >
+            </div>
+
+
+
+            <button class="btn btn-warning mt-5" (click)="addMenu()">Hozzáadás</button>
+        </form>
+    </div>
+
+    <div class="col-md-12" *ngIf="!isAdmin">
+        <div class="alert alert-danger mt-3">Nincs hozzáférése</div>
+    </div>
+
+
+
+
+    <div class="col col-md-12" *ngIf="isAdmin">
+        <h1 class="page-title">Étel törlése</h1>
+
+        <div class="card h-80 w-80 shadow-sm mt-2" *ngFor="let order of menu$ | async">   
+            <div class="card-body text-left">
+                <div class="mr-5"> <strong>ID:</strong> {{ order.id }}</div>
+                <div class="mr-5"> <strong>Étel neve:</strong> {{ order.foodName }}</div>
+                <div class="mr-5"> <strong>Fénykép elérési útvonala:</strong> {{order.imgUrl }}</div>
+                <div class="mr-5"> <strong>Kategória:</strong> {{ order.category }}</div>
+                <div class="mr-5"> <strong>Leírás:</strong> {{ order.description }}</div>
+                <div class="mr-5"> <strong>Ár:</strong> {{ order.price }}</div>
+                <div class="mr-5"> <strong>Elkészítési idő:</strong> {{ order.preparation }}</div>
+                <button class="btn btn-warning" (click)="delete(order.id)">Törlés</button>
+            </div>
+        </div>
+
+    </div>
+</div>

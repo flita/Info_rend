@@ -20,6 +20,21 @@ export class CartService {
       catchError(this.ErrorHandler)
     );
   }
+
+
+  deleteCart(id: Pick<Cart, 'id'>): Observable<{}> {
+    return this.http.delete<Cart>('/api/users/'+id, this.httpOptions)
+      .pipe(
+        first(),
+        catchError(this.ErrorHandler)
+      );
+  }
+
+  getCart(): Observable<Cart[]> {
+    return this.http.get<Cart[]>('/api/order', {responseType: 'json'}).pipe(
+      catchError(this.ErrorHandler)
+    );
+  }
   
   getMaxPrice(): Observable<Menu[]> {
     return this.http.get<Menu[]>('/api/getMaxPrice').pipe(
@@ -37,7 +52,7 @@ export class CartService {
     return this.http.post<Cart>('/api/addFinal',
         { price: formData.price, 
           preparation: formData.preparation,
-          uploaderId: formData.uploaderId },
+          uploaderId: formData.uploaderId},
         this.httpOptions
       )
       .pipe(

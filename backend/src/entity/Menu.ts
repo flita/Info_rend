@@ -1,8 +1,7 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Cart } from './Cart';
 
 @Entity()
-export class Orders {
+export class AddMenu {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -23,7 +22,4 @@ export class Orders {
     
     @Column({ type: 'int'})
     preparation: number;
-
-    @Column({ type: 'int'})
-    uploaderId: number;
 }

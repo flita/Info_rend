@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { catchError, Observable } from 'rxjs';
 import { Cart } from '../model/cart';
 import { Menu } from '../model/menu';
+import { AddMenu } from '../model/addmenu';
 import { User } from '../model/user';
 import { CartService } from '../service/cart.service';
 import { UserService } from '../service/user.service';
+import { MenuService } from '../service/menu.service';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +23,7 @@ export class CartComponent implements OnInit {
   form!: FormGroup;
   errorMessage: string | undefined = undefined;
 
-  constructor(private cartService: CartService, private userService: UserService, private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private cartService: CartService, private userService: UserService, private menuService: MenuService, private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.orders$ = this.fetchAll();
@@ -56,7 +58,7 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(formData: Partial<Cart>): void {
-    this.cartService.createFinalOrder(formData).pipe().subscribe(() => {
+    this.cartService.createFinalOrder(formData).pipe().subscribe(()=> {
       this.abortOrder()
     });
   }

@@ -3,4 +3,5 @@ export interface Cart {
     price: number;
     preparation: number;
     uploaderId: number;
+    menuId: number;
 }

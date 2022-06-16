@@ -1,36 +1,27 @@
 import { getRepository } from "typeorm";
-import { Orders } from "../entity/Orders";
+import { AddMenu } from "../entity/Menu";
 import { Controller } from "./controller";
 
-export class OrderController extends Controller {
-    repository = getRepository(Orders);
+export class MenuController extends Controller{
+    repository = getRepository(AddMenu);
 
     fetchAll = async (req, res, next) => {
         try {
             const entities = await this.repository.find();
 
-            if(!(entities.length > 0)) {
-                res.status(404).json({message: "No Order Found!"})
-                return;
-            }
-
             res.status(200).json(entities);
         } catch (err) {
-            if(!err.statusCode) {
-                err.statusCode = 500;
-            }
-            next(err);
+            res.status(404).json({message: "No Menu found!"})
         }
     }
 
-    AddOrder = async (req, res, next) => {
+    addMenu = async (req, res, next) => {
         const foodName = req.body.foodName;
         const imgUrl = req.body.imgUrl;
         const category = req.body.category;
         const description = req.body.description;
         const price = req.body.price;
         const preparation = req.body.preparation;
-        const uploaderId = req.body.uploaderId;
 
         try {
             const order = {
@@ -40,7 +31,6 @@ export class OrderController extends Controller {
                 description: description,
                 price: price,
                 preparation: preparation,
-                uploaderId: uploaderId
             };
 
             const result = await this.repository.save(order);
@@ -49,10 +39,10 @@ export class OrderController extends Controller {
             return;
         }
 
-        res.status(201).json({ message: 'Added Order Successfully!'})
+        res.status(201).json({ message: 'Added Menu Successfully!'})
     }
 
-    deleteOrder = async (req, res, next) => {
+    deleteMenu = async (req, res, next) => {
         try {
             const entity = await this.repository.findOneOrFail(req.params.id);
 
@@ -71,21 +61,5 @@ export class OrderController extends Controller {
             next(err);
         }
     }
-
-    deleteAllOrder = async (req, res, next) => {
-        try {
-            const entity = await this.repository.query("DELETE FROM orders");
-
-            if(!entity) {
-                res.status(404).json({message: 'No such Entity to delete!'});
-                return;
-            }
-
-            const del = await this.repository.delete(entity);
-
-            res.status(200).json(del);
-        } catch(err) {
-            res.json({message: "Something went wrong", error: err})
-        }
-    }
+    
 }

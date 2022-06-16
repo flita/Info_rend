@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
+import { AddMenuComponent } from './addmenu/addmenu.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { GuardService } from './service/guard/guard.service';
 import { UserCreateComponent } from './user-create/user-create.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,16 @@ const routes: Routes = [
     path: 'user-create',
     canActivate: [GuardService],
     component: UserCreateComponent
+  },
+  {
+    path: 'add-menu',
+    canActivate: [GuardService],
+    component: AddMenuComponent
+  },
+  {
+    path: 'orders-list',
+    canActivate: [GuardService],
+    component: OrdersListComponent
   }
 ];
 
